@@ -85,7 +85,7 @@ the new Block.
 #### Description
 Status code: 200.
 
-Returns representation of the Block object in Response Body.
+Returns representation of created Block object in Response Body.
 #### Example
 ``` 
 {
@@ -100,7 +100,7 @@ Returns representation of the Block object in Response Body.
 ### Error Responses
 #### Bad Request
 ##### Description
-When request body does not have `data` parameter, then Bad Request error is returned.
+When request body does not have `body` parameter, then Bad Request error is returned.
 
 Status code is 400.
 
