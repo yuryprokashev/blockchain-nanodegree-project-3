@@ -97,14 +97,20 @@ class Blockchain{
         let errors = [];
         let _this = this;
         return new Promise((resolve, reject) => {
-            _this.storage.getChainLength()
+            _this.chain.getChainLength()
                 .then(currentLength => {
+                    let allBlockValidations = [];
                     for(let i = 0; i < currentLength; i++) {
-                        _this.validateBlock(i)
-                            .catch(err => {
-                                errors.push(err.message);
-                            });
+                        allBlockValidations.push(
+                            _this.validateBlock(i)
+                                .catch(err => {
+                                    errors.push(err);
+                                })
+                        );
                     }
+                    return Promise.all(allBlockValidations);
+                })
+                .then(value => {
                     if(errors.length > 0) {
                         reject(errors);
                     } else {
@@ -112,7 +118,7 @@ class Blockchain{
                     }
                 })
                 .catch(err => {
-                    reject(new Error(`${err.message}`));
+                    reject(err.message);
                 });
         });
     }
