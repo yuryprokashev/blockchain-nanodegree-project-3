@@ -1,8 +1,8 @@
 # Local Machine Deployment
 1. Download or clone the repo to `project_folder` on your local machine.
-2. Open Terminal and `cd` to the `project_folder`
-3. Run `npm install`
-4. Run `node index.js`
+2. Open Terminal and `cd` to the `project_folder`.
+3. Run `npm install` to install dependencies.
+4. Run `node index.js`.
 5. Server will listen port 8000.
 
 # Dependencies
