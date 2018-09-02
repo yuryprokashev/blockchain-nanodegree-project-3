@@ -6,7 +6,7 @@
 5. Server will listen port 8000.
 
 ## Test using Postman
-1. [Download the collection](../tests/Blockchain Nanodegree Project 3.postman_collection.json) 
+1. [Download the collection](./tests/Blockchain Nanodegree Project 3.postman_collection.json) 
 (Collection v2.1, Postman v6.2.4).
 2. Import the collection to your Postman application.
 3. Open Collection Runner
