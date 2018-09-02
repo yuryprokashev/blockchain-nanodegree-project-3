@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "3f5412e7-ecde-4a60-9738-3509cf7bcc01",
+		"name": "Blockchain Nanodegree",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getBlockByHeight",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23c6e03d-6209-49c7-9908-7c00edb35fa8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Genesis Block returned\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.body).to.eql(\"First block in the chain - Genesis block\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/block/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"block",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBlockByHeightErrorHeightOutOfBounds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11a6474a-67ae-4581-8ad0-924f10851fd2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Error is returned. Key is out of bounds.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.eql(\"Can not get Block at key = 100. Key not found in database [100]\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/block/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"block",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postBlock",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f382d94-d32d-40a5-ab3a-f3aa44d306fc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"The Block, which is just added, is returned.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.body).to.eql(\"test block from REST client\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"body\":\"test block from REST client\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/block",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postBlockErrorNoBodyProperty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3684664-24c6-4f58-aa2c-46848438a2f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Error is returned. Missing 'body' property.\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.eql(\"missing 'body' key in request body.\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\":\"test block from REST client\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/block",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getChain",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4581c997-8d1d-445f-bf84-5d3947317063",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Height is more than 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.height).to.be.gte(0);",
+							"});",
+							"",
+							"pm.test(\"Chain is valid\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.isValid).to.be.true;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/chain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chain"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
