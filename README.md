@@ -5,6 +5,11 @@
 4. Run `node index.js`
 5. Server will listen port 8000.
 
+# Dependencies
+1. [LevelDB 4.0.0+](https://github.com/Level/level)
+2. [Crypto.js 3.1.9-1+](https://www.npmjs.com/package/crypto-js)
+3. [Express.js 4.0.0+](https://expressjs.com/)
+
 # Test using Postman
 1. [Use the Postman collection in this repo](./tests/Blockchain_Nanodegree_Project_3.postman_collection.json) 
 (Collection v2.1, Postman v6.2.4).
