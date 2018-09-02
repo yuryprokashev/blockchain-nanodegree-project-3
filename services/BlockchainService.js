@@ -97,7 +97,7 @@ class Blockchain{
         let errors = [];
         let _this = this;
         return new Promise((resolve, reject) => {
-            _this.chain.getChainLength()
+            _this.storage.getChainLength()
                 .then(currentLength => {
                     let allBlockValidations = [];
                     for(let i = 0; i < currentLength; i++) {
