@@ -113,6 +113,6 @@ Response body has `error: String` property.
 ##### Example
 ``` 
 {
-    "error": "missing 'data' key in request body."
+    "error": "missing 'body' key in request body."
 }
 ```
